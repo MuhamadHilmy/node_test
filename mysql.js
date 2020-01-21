@@ -82,7 +82,7 @@ var GetGeneral = function(querys, reply){
     });
 
     pool.getConnection(function(err, connection){
-        connection.query(querys, function(err, fields){
+        connection.query('SELECT * FROM students', function(err, fields){
             if (err){
                 console.log(err)
                 response.status = "14";
