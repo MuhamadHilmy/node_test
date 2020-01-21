@@ -103,7 +103,7 @@ var GetGeneral = function(querys, reply){
                 response["data"] = data;
                 reply(response)
             }
-        })
+        });
     });
 }
 module.exports.GetGeneral = GetGeneral;
