@@ -43,6 +43,7 @@ var deleteData = function(query, reply){
         status: "00",
         description: "DELETE SUCCESS"
     }
+    
     var pool = mysql.createPool({
         host: config.mysql_host,
         port: config.mysql_port,
@@ -68,11 +69,12 @@ var deleteData = function(query, reply){
 }
 module.exports.deleteData = deleteData;
 
-var GetGeneral = function(querys, reply){
+var GetGeneral = function(query, reply){
     var response = {
         status: "00",
         description: "GET DATA SUCCESS"
     }
+    console.log(config.mysql_host + ':' + config.mysql_port + ':' + config.mysql_user + ':' + config.mysql_pass + ':' + config.mysql_db)
     var pool = mysql.createPool({
         host: config.mysql_host,
         port: config.mysql_port,
@@ -82,7 +84,7 @@ var GetGeneral = function(querys, reply){
     });
 
     pool.getConnection(function(err, connection){
-        connection.query('SELECT * FROM students', function(err, fields){
+        connection.query(query, function(err, fields){
             if (err){
                 console.log(err)
                 response.status = "14";
