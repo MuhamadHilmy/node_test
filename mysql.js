@@ -68,7 +68,7 @@ var deleteData = function(query, reply){
 }
 module.exports.deleteData = deleteData;
 
-var GetGeneral = function(query, reply){
+var GetGeneral = function(querys, reply){
     var response = {
         status: "00",
         description: "GET DATA SUCCESS"
@@ -82,7 +82,7 @@ var GetGeneral = function(query, reply){
     });
 
     pool.getConnection(function(err, connection){
-        connection.query(query, function(err, fields){
+        connection.query(querys, function(err, fields){
             if (err){
                 console.log(err)
                 response.status = "14";
