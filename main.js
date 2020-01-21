@@ -88,7 +88,7 @@ app.post('/test', function(req, res){
     });
 })
 
-var server = app.listen("507", function(){
+var server = app.listen(process.env.SERVER_PORT, function(){
     var port = server.address().port;
     
     console.log("SERVER RUNNING WITH PORT : " + port)

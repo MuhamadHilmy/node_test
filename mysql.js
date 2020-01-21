@@ -1,11 +1,11 @@
 var mysql = require('mysql');
 
 var config = {
-    mysql_db: "school",
-    mysql_host: "127.0.0.1",
-    mysql_port: "3306",
-    mysql_user: "root",
-    mysql_pass: ""
+    mysql_db: process.env.MYSQL_DATABASE,
+    mysql_host: process.env.MYSQL_HOST,
+    mysql_port: process.env.MYSQL_PORT,
+    mysql_user: process.env.MYSQL_USER,
+    mysql_pass: process.env.MYSQL_PASSWORD
 }
 
 var insertUpdateGeneral = function(query, reply){
