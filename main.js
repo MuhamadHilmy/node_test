@@ -53,7 +53,7 @@ function mainHandler(request, reply){
                 }
             });
         } else if(request.method == "1000"){
-            var query = 'SELECT * FROM students'
+            var query = 'SELECT * FROM students';
             mysql.GetGeneral(query, function(getData){
                 if(getData.status == "00"){
                     console.log('-----------------------------------------------------------')
