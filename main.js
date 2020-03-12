@@ -53,11 +53,15 @@ function mainHandler(request, reply){
                 }
             });
         } else if(request.method == "1000"){
-            var query = 'SELECT * FROM students';
+            var query = 'SELECT * FROM users WHERE username="'+ request.username +'" LIMIT 1';
             mysql.GetGeneral(query, function(getData){
                 if(getData.status == "00"){
-                    console.log('-----------------------------------------------------------')
-                    reply(getData)
+                    var validatePwd = validatePassword(request, getData.data[0]);
+                    if(validatePwd.status != "00"){
+                        reply(validatePwd);
+                    } else {
+                        reply(getData)
+                    }
                 } else {
                     response.status = "14";
                     response.description = getData.description
@@ -72,6 +76,27 @@ function mainHandler(request, reply){
             console.log('-----------------------------------------------------------')
             reply(response)
         }
+    }
+}
+
+function validatePassword(request, dataDB){
+    var response = {
+        status: "00",
+        description: "SUCCESS",
+    }
+
+    if(request.password != dataDB.password){
+        response.status = "04"
+        response.description = "WRONG PASSWORD"
+        
+        return response
+    } else if(dataDB.status == 0){
+        response.status = "05"
+        response.description = "USER NOT ACTIVE"
+        
+        return response
+    } else {
+        return response
     }
 }
 
